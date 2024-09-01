@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Story from "story/src/shared/Story";
-
+import "./App.css";
 
 function App() {
   return (
