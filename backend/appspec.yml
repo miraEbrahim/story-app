@@ -1,0 +1,41 @@
+version: 0.0
+os: linux
+
+files:
+    - source: /
+      destination: /tmp/story-api
+
+permissions:
+    - object: /home/story/story-api
+      owner: story
+      group: story
+
+    - object: /tmp
+      pattern: "story-api"
+      owner: story
+      group: story
+      type:
+          - directory
+
+    - object: /tmp/story-api
+      owner: story
+      group: story
+
+hooks:
+    ApplicationStop:
+        - location: deployment/scripts/stop.sh
+          timeout: 20
+          runas: story
+
+    BeforeInstall:
+        - location: deployment/scripts/preinstall.sh
+          runas: story
+
+    AfterInstall:
+        - location: deployment/scripts/postinstall.sh
+          runas: story
+
+    ApplicationStart:
+        - location: deployment/scripts/start.sh
+          timeout: 20
+          runas: story

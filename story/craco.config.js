@@ -4,6 +4,12 @@ module.exports = {
     devServer: {
         port: 3002,
     },
+    babel: {
+        presets: ["@babel/preset-env", "@babel/preset-react"],
+        plugins: [
+            ["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
+        ],
+    },
     webpack: {
         plugins: [
             new ModuleFederationPlugin({
